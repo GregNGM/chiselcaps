@@ -16,9 +16,9 @@ cutWidth = 1;
 cutHeight = height * 0.75;
 tabWidth = outerWidth * 0.5;
 
-gripHeight = 1;
+gripHeight = 2;
 circleQuality = 50;
-
+rotate([180,0,0]){ //For cura to orientate properly on build script
 union(){
     difference(){
         cube([outerWidth,outerThickness,height]);
@@ -26,12 +26,12 @@ union(){
             cube([chiselWidth,chiselThickness,height - wallThickness]);
         }
         
-        translate([((outerWidth - tabWidth) / 2) - cutWidth,0,0]){
-            cube([cutWidth,outerThickness,cutHeight]);
+        translate([((outerWidth - tabWidth) / 2) - cutWidth,outerThickness / 2,0]){
+            cube([cutWidth,outerThickness / 2,cutHeight]);
         }
         
-        translate([outerWidth - ((outerWidth - tabWidth) / 2),0,0]){
-            cube([cutWidth,outerThickness,cutHeight]);
+        translate([outerWidth - ((outerWidth - tabWidth) / 2),outerThickness / 2,0]){
+            cube([cutWidth,outerThickness / 2,cutHeight]);
         }
         
         translate([outerWidth / 2,0.25,height - 5]){
@@ -43,7 +43,7 @@ union(){
         }
     }
 
-    translate([((outerWidth - tabWidth) / 2),wallThickness,gripHeight]){ 
+  /*  translate([((outerWidth - tabWidth) / 2),wallThickness,gripHeight]){ 
         rotate([90,180,90]){
             difference(){
                 cylinder(tabWidth,gripHeight,gripHeight,$fn=circleQuality);
@@ -52,7 +52,7 @@ union(){
                 }
             }
         }
-    }
+    }*/
     
     translate([((outerWidth - tabWidth) / 2),outerThickness - wallThickness,gripHeight]){    
         rotate([90,0,90]){
@@ -65,4 +65,5 @@ union(){
         }
     }
 
+}
 }
